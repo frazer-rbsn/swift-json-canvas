@@ -38,6 +38,7 @@ extension CanvasColor: Codable {
 			guard let intValue = Int(value), let preset = Preset(rawValue: intValue) else {
 				throw DecodingError.invalidPresetValue(value)
 			}
+
 			self = .preset(preset)
 		}
 	}

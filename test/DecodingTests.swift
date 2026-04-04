@@ -4,8 +4,8 @@
 //
 
 import Foundation
-import Testing
 import JSONCanvas
+import Testing
 
 struct DecodingTests {
 
@@ -49,7 +49,6 @@ struct DecodingTests {
 			Issue.record("Expected text type, but found \(node4.type) instead.")
 		}
 	}
-
 }
 
 let jsonCanvasOrgSample = #"""
@@ -67,4 +66,3 @@ let jsonCanvasOrgSample = #"""
  ]
 }
 """#
-

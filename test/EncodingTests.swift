@@ -4,14 +4,13 @@
 //
 
 import Foundation
-import Testing
 import JSONCanvas
+import Testing
 
 struct EnodingTests {
 	let defaultID = UUID().uuidString
 	let defaultFrame = Frame(x: 0, y: 0, width: 10, height: 10)
 	let defaultColor = CanvasColor.preset(.orange)
-
 
 	@Test func encodePresetColor() throws {
 		let color = CanvasColor.preset(.orange)
@@ -27,9 +26,9 @@ struct EnodingTests {
 		let text = "text"
 
 		let node = Node.makeTextNode(id: defaultID,
-																 text: text,
-																 frame: defaultFrame,
-																 color: defaultColor)
+		                             text: text,
+		                             frame: defaultFrame,
+		                             color: defaultColor)
 		try encode(node)
 	}
 
@@ -38,10 +37,10 @@ struct EnodingTests {
 		let subpath = "subpath"
 
 		let node = Node.makeFileNode(id: defaultID,
-																 file: file,
-																 subpath: subpath,
-																 frame: defaultFrame,
-																 color: defaultColor)
+		                             file: file,
+		                             subpath: subpath,
+		                             frame: defaultFrame,
+		                             color: defaultColor)
 		try encode(node)
 	}
 
@@ -51,11 +50,11 @@ struct EnodingTests {
 		let bgStyle: GroupNodeFragment.BackgroundStyle = .cover
 
 		let node = Node.makeGroupNode(id: defaultID,
-																	label: label,
-																	background: background,
-																	backgroundStyle: bgStyle,
-																	frame: defaultFrame,
-																	color: defaultColor)
+		                              label: label,
+		                              background: background,
+		                              backgroundStyle: bgStyle,
+		                              frame: defaultFrame,
+		                              color: defaultColor)
 		try encode(node)
 	}
 
@@ -63,26 +62,26 @@ struct EnodingTests {
 		let link = "url"
 
 		let node = Node.makeLinkNode(id: defaultID,
-																 url: link,
-																 frame: defaultFrame,
-																 color: defaultColor)
+		                             url: link,
+		                             frame: defaultFrame,
+		                             color: defaultColor)
 		try encode(node)
 	}
 
 	@Test func encodeEdge() throws {
-		let edge = Edge.init(id: UUID().uuidString,
-												 fromNode: UUID().uuidString,
-												 fromSide: .left,
-												 fromEnd: .none,
-												 toNode: UUID().uuidString,
-												 toSide: .right,
-												 toEnd: .arrow,
-												 color: .preset(.green),
-												 label: "label")
+		let edge = Edge(id: UUID().uuidString,
+		                fromNode: UUID().uuidString,
+		                fromSide: .left,
+		                fromEnd: .none,
+		                toNode: UUID().uuidString,
+		                toSide: .right,
+		                toEnd: .arrow,
+		                color: .preset(.green),
+		                label: "label")
 		try encode(edge)
 	}
 
-	private func encode<T: Encodable>(_ encodable: T) throws -> String {
+	private func encode(_ encodable: some Encodable) throws -> String {
 		let jsonEncoder = JSONEncoder()
 		let data = try jsonEncoder.encode(encodable)
 		let string = try #require(String(data: data, encoding: .utf8))

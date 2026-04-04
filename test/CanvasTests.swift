@@ -4,8 +4,8 @@
 //
 
 import Foundation
-import Testing
 import JSONCanvas
+import Testing
 
 struct CanvasTests {
 

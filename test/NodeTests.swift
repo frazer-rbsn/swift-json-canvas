@@ -4,8 +4,8 @@
 //
 
 import Foundation
-import Testing
 import JSONCanvas
+import Testing
 
 struct NodeTests {
 
@@ -28,11 +28,11 @@ struct NodeTests {
 		let background = "background"
 		let bgStyle: GroupNodeFragment.BackgroundStyle = .cover
 		let node = Node.makeGroupNode(id: defaultID,
-																	label: label,
-																	background: background,
-																	backgroundStyle: bgStyle,
-																	frame: defaultFrame,
-																	color: defaultColor)
+		                              label: label,
+		                              background: background,
+		                              backgroundStyle: bgStyle,
+		                              frame: defaultFrame,
+		                              color: defaultColor)
 
 		#expect(node.type == .group(.init(label: label, background: background, backgroundStyle: bgStyle)))
 		#expect(node.frame == defaultFrame)
@@ -44,10 +44,10 @@ struct NodeTests {
 		let file = "file"
 		let subpath = "subpath"
 		let node = Node.makeFileNode(id: defaultID,
-																 file: file,
-																 subpath: subpath,
-																 frame: defaultFrame,
-																 color: defaultColor)
+		                             file: file,
+		                             subpath: subpath,
+		                             frame: defaultFrame,
+		                             color: defaultColor)
 
 		#expect(node.type == .file(.init(file: file, subpath: subpath)))
 		#expect(node.frame == defaultFrame)

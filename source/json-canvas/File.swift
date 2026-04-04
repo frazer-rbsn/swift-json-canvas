@@ -12,7 +12,7 @@ public struct FileNodeFragment: Sendable, Codable, Equatable {
 
 	///
 	/// A subpath that may link to a heading or a block. Always starts with a #.
-	/// 
+	///
 	public var subpath: String?
 
 	public init(file: String, subpath: String? = nil) {

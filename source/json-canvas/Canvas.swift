@@ -30,8 +30,8 @@ public struct Canvas {
 	/// Initialises an empty canvas.
 	///
 	public init() {
-		self.nodes = []
-		self.edges = []
+		nodes = []
+		edges = []
 	}
 
 	public init(nodes: IdentifiedArrayOf<Node>, edges: IdentifiedArrayOf<Edge>) {
@@ -43,7 +43,7 @@ public struct Canvas {
 extension Canvas: Codable {
 	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
-		self.nodes = try container.decodeIfPresent(IdentifiedArrayOf<Node>.self, forKey: .nodes) ?? []
-		self.edges = try container.decodeIfPresent(IdentifiedArrayOf<Edge>.self, forKey: .edges) ?? []
+		nodes = try container.decodeIfPresent(IdentifiedArrayOf<Node>.self, forKey: .nodes) ?? []
+		edges = try container.decodeIfPresent(IdentifiedArrayOf<Edge>.self, forKey: .edges) ?? []
 	}
 }

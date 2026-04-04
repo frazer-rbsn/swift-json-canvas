@@ -2,14 +2,11 @@
 
 --allman false
 --commas inline
---header strip
 --indent tab
 --indentcase true
 --markdown-files format-strict
---nilinit insert
 --nospaceoperators ...
 --propertytypes explicit
---self insert
 --xcodeindentation true
 --wrap-collections before-first
 --wrap-parameters after-first

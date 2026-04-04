@@ -23,7 +23,6 @@ public struct Edge: Sendable, Identifiable {
 	///
 	public var fromSide: Side?
 
-
 	///
 	/// The shape of the endpoint at the edge start
 	///
@@ -55,14 +54,14 @@ public struct Edge: Sendable, Identifiable {
 	public var label: String?
 
 	public init(id: ID,
-							fromNode: Node.ID,
-							fromSide: Side? = nil,
-							fromEnd: End,
-							toNode: Node.ID,
-							toSide: Side? = nil,
-							toEnd: End,
-							color: CanvasColor? = nil,
-							label: String? = nil) {
+	            fromNode: Node.ID,
+	            fromSide: Side? = nil,
+	            fromEnd: End,
+	            toNode: Node.ID,
+	            toSide: Side? = nil,
+	            toEnd: End,
+	            color: CanvasColor? = nil,
+	            label: String? = nil) {
 		self.id = id
 		self.fromNode = fromNode
 		self.fromSide = fromSide
@@ -78,15 +77,15 @@ public struct Edge: Sendable, Identifiable {
 extension Edge: Codable {
 	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
-		self.id = try container.decode(ID.self, forKey: .id)
-		self.fromNode = try container.decode(Node.ID.self, forKey: .fromNode)
-		self.fromSide = try container.decodeIfPresent(Side.self, forKey: .fromSide)
-		self.fromEnd = try container.decodeIfPresent(End.self, forKey: .fromEnd) ?? .none
-		self.toNode = try container.decode(Node.ID.self, forKey: .toNode)
-		self.toSide = try container.decodeIfPresent(Side.self, forKey: .toSide)
-		self.toEnd = try container.decodeIfPresent(End.self, forKey: .toEnd) ?? .arrow
-		self.color = try container.decodeIfPresent(CanvasColor.self, forKey: .color)
-		self.label = try container.decodeIfPresent(String.self, forKey: .label)
+		id = try container.decode(ID.self, forKey: .id)
+		fromNode = try container.decode(Node.ID.self, forKey: .fromNode)
+		fromSide = try container.decodeIfPresent(Side.self, forKey: .fromSide)
+		fromEnd = try container.decodeIfPresent(End.self, forKey: .fromEnd) ?? .none
+		toNode = try container.decode(Node.ID.self, forKey: .toNode)
+		toSide = try container.decodeIfPresent(Side.self, forKey: .toSide)
+		toEnd = try container.decodeIfPresent(End.self, forKey: .toEnd) ?? .arrow
+		color = try container.decodeIfPresent(CanvasColor.self, forKey: .color)
+		label = try container.decodeIfPresent(String.self, forKey: .label)
 	}
 }
 

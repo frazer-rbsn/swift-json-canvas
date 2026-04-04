@@ -40,10 +40,10 @@ extension NodeType: Codable {
 		let type = try container.decode(NodeTypeKey.self, forKey: .type)
 
 		self = switch type {
-			case .text: .text(try TextNodeFragment(from: decoder))
-			case .file: .file(try FileNodeFragment(from: decoder))
-			case .link: .link(try LinkNodeFragment(from: decoder))
-			case .group: .group(try GroupNodeFragment(from: decoder))
+			case .text: try .text(TextNodeFragment(from: decoder))
+			case .file: try .file(FileNodeFragment(from: decoder))
+			case .link: try .link(LinkNodeFragment(from: decoder))
+			case .group: try .group(GroupNodeFragment(from: decoder))
 		}
 	}
 

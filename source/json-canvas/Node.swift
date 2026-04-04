@@ -53,12 +53,12 @@ public struct Node: Sendable, Identifiable {
 	public var color: CanvasColor?
 
 	private init(id: ID,
-							 type: NodeType,
-							 x: Int,
-							 y: Int,
-							 width: Int,
-							 height: Int,
-							 color: CanvasColor?) {
+	             type: NodeType,
+	             x: Int,
+	             y: Int,
+	             width: Int,
+	             height: Int,
+	             color: CanvasColor?) {
 		self.id = id
 		self.type = type
 		self.x = x
@@ -70,12 +70,12 @@ public struct Node: Sendable, Identifiable {
 
 	private init(id: ID, type: NodeType, frame: Frame, color: CanvasColor?) {
 		self.init(id: id,
-							type: type,
-							x: frame.x,
-							y: frame.y,
-							width: frame.width,
-							height: frame.height,
-							color: color)
+		          type: type,
+		          x: frame.x,
+		          y: frame.y,
+		          width: frame.width,
+		          height: frame.height,
+		          color: color)
 	}
 }
 
@@ -85,24 +85,24 @@ extension Node: Codable {
 
 	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
-		self.id = try container.decode(ID.self, forKey: .id)
-		self.type = try NodeType(from: decoder)
-		self.x = try container.decode(Int.self, forKey: .x)
-		self.y = try container.decode(Int.self, forKey: .y)
-		self.width = try container.decode(Int.self, forKey: .width)
-		self.height = try container.decode(Int.self, forKey: .height)
-		self.color = try container.decodeIfPresent(CanvasColor.self, forKey: .color) ?? nil
+		id = try container.decode(ID.self, forKey: .id)
+		type = try NodeType(from: decoder)
+		x = try container.decode(Int.self, forKey: .x)
+		y = try container.decode(Int.self, forKey: .y)
+		width = try container.decode(Int.self, forKey: .width)
+		height = try container.decode(Int.self, forKey: .height)
+		color = try container.decodeIfPresent(CanvasColor.self, forKey: .color) ?? nil
 	}
 
 	public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(self.id, forKey: .id)
+		try container.encode(id, forKey: .id)
 		try type.encode(to: encoder)
-		try container.encode(self.x, forKey: .x)
-		try container.encode(self.y, forKey: .y)
-		try container.encode(self.width, forKey: .width)
-		try container.encode(self.height, forKey: .height)
-		try container.encodeIfPresent(self.color, forKey: .color)
+		try container.encode(x, forKey: .x)
+		try container.encode(y, forKey: .y)
+		try container.encode(width, forKey: .width)
+		try container.encode(height, forKey: .height)
+		try container.encodeIfPresent(color, forKey: .color)
 	}
 
 	enum CodingKeys: CodingKey {
@@ -121,37 +121,37 @@ extension Node: Codable {
 public extension Node {
 
 	static func makeTextNode(id: Node.ID = UUID().uuidString,
-													 text: String,
-													 frame: Frame,
-													 color: CanvasColor? = nil) -> Self {
+	                         text: String,
+	                         frame: Frame,
+	                         color: CanvasColor? = nil) -> Self {
 		Node(id: id, type: .text(.init(text: text)), frame: frame, color: color)
 	}
 
 	static func makeFileNode(id: Node.ID = UUID().uuidString,
-													 file: String,
-													 subpath: String? = nil,
-													 frame: Frame,
-													 color: CanvasColor? = nil) -> Self {
+	                         file: String,
+	                         subpath: String? = nil,
+	                         frame: Frame,
+	                         color: CanvasColor? = nil) -> Self {
 		Node(id: id, type: .file(.init(file: file, subpath: subpath)), frame: frame, color: color)
 	}
 
 	static func makeGroupNode(id: Node.ID = UUID().uuidString,
-														label: String? = nil,
-														background: String? = nil,
-														backgroundStyle: GroupNodeFragment.BackgroundStyle? = nil,
-														frame: Frame,
-														color: CanvasColor? = nil) -> Self {
+	                          label: String? = nil,
+	                          background: String? = nil,
+	                          backgroundStyle: GroupNodeFragment.BackgroundStyle? = nil,
+	                          frame: Frame,
+	                          color: CanvasColor? = nil) -> Self {
 		Node(id: id,
-				 type: .group(.init(label: label,
-														background: background,
-														backgroundStyle: backgroundStyle)),
-				 frame: frame, color: color)
+		     type: .group(.init(label: label,
+		                        background: background,
+		                        backgroundStyle: backgroundStyle)),
+		     frame: frame, color: color)
 	}
 
 	static func makeLinkNode(id: Node.ID = UUID().uuidString,
-													 url: String,
-													 frame: Frame,
-													 color: CanvasColor? = nil) -> Self {
+	                         url: String,
+	                         frame: Frame,
+	                         color: CanvasColor? = nil) -> Self {
 		Node(id: id, type: .link(.init(url: url)), frame: frame, color: color)
 	}
 }

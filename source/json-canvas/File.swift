@@ -20,7 +20,7 @@ public struct FileNodeFragment: Sendable, Codable, Equatable {
 		self.subpath = subpath
 	}
 
-	public enum CodingKeys: CodingKey {
+	enum CodingKeys: CodingKey {
 		case file
 		case subpath
 	}

@@ -26,7 +26,7 @@ public struct GroupNodeFragment: Sendable, Codable, Equatable {
 		self.backgroundStyle = backgroundStyle
 	}
 
-	public enum CodingKeys: CodingKey {
+	enum CodingKeys: CodingKey {
 		case label
 		case background
 		case backgroundStyle

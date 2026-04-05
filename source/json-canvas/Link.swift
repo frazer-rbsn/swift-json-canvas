@@ -10,7 +10,7 @@ public struct LinkNodeFragment: Sendable, Codable, Equatable {
 		self.url = url
 	}
 
-	public enum CodingKeys: CodingKey {
+	enum CodingKeys: CodingKey {
 		case url
 	}
 }

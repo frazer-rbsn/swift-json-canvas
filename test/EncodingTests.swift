@@ -8,6 +8,7 @@ import JSONCanvas
 import Testing
 
 struct EnodingTests {
+
 	let defaultID = UUID().uuidString
 	let defaultFrame = Frame(x: 0, y: 0, width: 10, height: 10)
 	let defaultColor = CanvasColor.preset(.orange)
@@ -81,11 +82,14 @@ struct EnodingTests {
 		try encode(edge)
 	}
 
+	@discardableResult
 	private func encode(_ encodable: some Encodable) throws -> String {
 		let jsonEncoder = JSONEncoder()
+		jsonEncoder.outputFormatting = [.withoutEscapingSlashes, .sortedKeys]
 		let data = try jsonEncoder.encode(encodable)
 		let string = try #require(String(data: data, encoding: .utf8))
-		print("Encoded object: \n\(encodable)\n")
+		print("Object:\n\(encodable)")
+		print("JSON:")
 		print(NSString(string: string))
 		return string
 	}

@@ -22,6 +22,8 @@ dependencies: [
 ## Usage
 
 ```swift
+import JSONCanvas
+
 // Initialising a new canvas and adding nodes
 var canvas = Canvas()
 let node = Node.makeTextNode(text: text, frame: .init(x: 0, y: 0, width: 0, height: 0), color: .preset(.red))
